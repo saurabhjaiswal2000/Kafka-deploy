@@ -3,13 +3,11 @@ version: '3.7'
 services:
   zookeeper:
     image: wurstmeister/zookeeper:latest
-    conatainer_name: zookeeper
     ports:
       - "2181:2181"
 
   kafka-broker-1:
     image: wurstmeister/kafka:latest
-    container_name: kafka-broker-1
     ports:
       - "9092:9092"
     environment:
@@ -24,7 +22,6 @@ services:
 
   kafka-broker-2:
     image: wurstmeister/kafka:latest
-    container_name: kafka-broker-2
     ports:
       - "9093:9093"
     environment:
@@ -39,7 +36,6 @@ services:
 
   kafka-broker-3:
     image: wurstmeister/kafka:latest
-    container_name: kafka-broker-3
     ports:
       - "9094:9094"
     environment:
@@ -53,8 +49,7 @@ services:
       - zookeeper
 
   python-consumer:
-    image: saujai2000/consumer-image
-    container_name: python-consumer
+    image: saujai2000/consumer
     environment:
       KAFKA_BROKER: "kafka-broker-1:9092,kafka-broker-2:9092,kafka-broker-3:9092"
       KAFKA_TOPIC: my_topic
